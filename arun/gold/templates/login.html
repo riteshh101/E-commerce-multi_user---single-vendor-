@@ -1,0 +1,56 @@
+
+{% extends 'header.html' %}
+
+{% block title%}Login{% endblock %}
+{% block css %}
+
+
+#outer
+{
+background-color:rgba(0,0,0,0.5);
+border-radius:40px;
+height:450px;
+border: 1px solid red;
+margin-top: 100px;
+margin-bottom: 100px;
+font-family:andalus;
+
+}
+
+{% endblock %}
+
+
+{% block body %}
+{% load static %}
+<div class="container-fluid" style="background-image:url('{% static "image/grass.jpg" %}');background-size:cover;background-repeat:no-repeat;background-attachment:fixed;" >
+<div class="row">
+<div class="col-sm-5 col-md-5 col-lg-5"></div>
+<div  class="col-sm-3 col-md-3 col-lg-3" id="outer">
+        <center>
+			<form action="" method="POST" novalidate>
+            {% csrf_token %}
+            <h2 style="color:#00ff00;text-shadow:2px 7px 6px black; "><b>Login</b></h2>
+                {% for message in messages %}
+                <small class="text-warning">{{message}}</small>
+                {% endfor %}
+                <center><img src="{% static 'image/amin.png' %}" height="85px" width="75px"style="padding-top: 10px;"/></center><br/>
+
+                {% for fm in form %}
+                <span class="text-white">{{fm.label_tag}}</span>  {{fm}}  <small class="text-warning"> {{fm.errors|striptags}}</small>
+                {% endfor %}   <br> <input type="submit" value="Login" class=" btn btn-primary"  ><br/>
+
+            </br>
+                {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="alert alert-danger my-3">{{error}}</p>
+        {% endfor %}
+        {% endif %}
+
+        </form>
+        </center>
+        </div>
+		<div class=" col-sm-4 col-md-4 col-lg-4"></div>
+		</div>
+		</div>
+{% endblock %}
+

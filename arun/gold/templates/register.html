@@ -1,0 +1,70 @@
+{% extends 'header.html' %}
+{% block title%}Register{% endblock %}
+{% block css %}
+
+
+.b
+{
+min-height: 500px;
+padding-top: 10px;
+padding-left: 40px;
+padding-right:40px;
+padding-bottom:40px;
+margin-bottom:10px;
+font-weight: bold;
+border-left:1px solid gray;
+border-right: 1px solid gray;
+border-bottom: 10px ;
+border-radius: 5px;
+}
+
+
+
+{% endblock %}
+
+{% load static %}
+{% block body %}
+
+<form action="" method="POST" novalidate>
+          {% csrf_token %}
+        <div class="container-fluid" style="background-image:url('static/image/grass.jpg');background-size:cover;background-repeat:no-repeat;background-attachment:fixed;" >
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                <div class="col-sm-1 col-lg-4">
+
+                </div>
+                <div class="col-sm-10 col-lg-4" style="color:#2098d1;background-color:rgba(0,0,0,0.5); 40px;padding-left: 40px;margin-top:150px;font-size: 30px;text-align: left;font-weight: bold;border-left:1px solid gray;border-right:1px solid gray;border-top: 1px solid gray;border-radius:5px;">Create account<br>
+                {% for message in messages %}
+                    <h5 class="text-warning">{{message}}</h5>
+                    {% endfor %}
+
+                </div>
+                <div class="col-sm-1 col-lg-4"></div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-1 col-lg-4"></div>
+                <div class="col-sm-10 col-lg-4 b" style="background:white;background-color:rgba(0,0,0,0.5);">
+                    {% for fm in form %}
+
+                    <span class="text-white">{{fm.label_tag}}</span>  {{fm}}  <small class="text-warning"> {{fm.errors|striptags}}</small>
+                        {% endfor %}<br>
+                    <input type="submit" value="Register" class="btn btn-success form-control">
+                {% if form.non_field_errors %}
+            {% for error in form.non_field_error %}
+            <p class="alert alert-danger my-3">{{error}}</p>
+
+            {% endfor %}
+            {% endif %}
+
+                </div>
+            <div class="col-sm-1 col-lg-4"></div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </form>
+
+
+{% endblock %}

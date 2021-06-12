@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Order Detail</title>
+    <style>
+    span{
+        color:blue;
+         }
+
+</style>
+  </head>
+  <body>
+
+
+      <div class="container mt-4 mb-4"  style="border:1px solid red;">
+<div class="container mt-2">
+  <h3 class="mb-4">Total Items</h3>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+
+        <th scope="col">Product</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Final Price</th>
+
+    </tr>
+  </thead>
+  <tbody>
+{% for x in ct %}
+    <tr>
+
+
+        <td><img src="/media/{{x.image}}" height="20px;"/></td>
+      <td>{{x.product_name}}</td>
+      <td>&emsp;{{x.count}} </td>
+      <td>{{x.price}}0</td>
+      <td>{{x.final_price}}0</td>
+
+    </tr>
+{% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <td></td>
+    <td><h4>Pay Amount</h4></td>
+    <td></td>
+    <td></td>
+
+
+    <td><h4>{{mn}}0</h4></td>
+  </tr>
+  </tfoot>
+</table>
+      </div>
+          <hr>
+          <h4>Address</h4><hr>
+          <div class="card">
+            {% for x in ctt %}
+
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <h5><span class="text-success">Name:-</span>{{x.name}}</h5>
+      <h5><p><span class="text-success">Address:-</span>{{x.address1}}</p>
+        <p><span class="text-success">Email:-</span>{{x.email}}</p>
+        <p><span class="text-success">Mobile No.:-</span>{{x.mobile}}</p>
+        <p><span class="text-success">City:-</span>{{x.city}}</p>
+        <p><span class="text-success">State:-</span>{{x.state}}</p>
+        <p><span class="text-success">Zip Code:-</span>{{x.zip}}</p>
+      </h5>
+
+    </blockquote>
+  </div>
+            {% endfor %}
+
+</div>
+        <div class="row mt-5 ml-3 mb-4 my-3">
+<a href="{% url 'pdf_detail' %}" class="btn btn-primary ml-4">Continue</a>
+            <a href="{% url 'buypage' %}" class="btn btn-warning ml-4">Back</a>
+            <a href="{% url 'cart_page' %}" class="btn btn-danger ml-4">Cancel</a>
+  </div></div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>

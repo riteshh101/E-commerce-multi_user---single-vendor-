@@ -1,0 +1,202 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{% static 'image/RSM_.ico' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %} {% endblock %}</title>
+      <style>
+      .a
+            {
+                min-height:40px;
+                background:black;
+                text-align:center;
+                color:white;
+                padding-top:10px;
+            }
+            .b
+            {
+                min-height:220px;
+                background:black;
+            }
+            .c
+            {
+                min-height:190px;
+                background:black;
+                font-family:arial;
+                color:gray;
+                margin-top:15px;
+                font-size:12px;
+            }
+            .d
+            {
+                min-height:50px;
+                background:black;
+
+            }
+
+
+        .slid{
+            height:400px;
+        }
+        #map{
+            width:600px;
+        }
+            @media only screen and (max-width: 600px) {
+    .slid {
+            height: 150px;
+        }
+        #map{
+            width:auto;
+        }
+    }
+          {% block css %} {% endblock %}
+  </style>
+  </head>
+  <body>
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row"  style="background-color:#363a3d;height:50px;">
+    <div class="col-sm-3 mt-2">
+    <img src="{% static 'image/RSM_.ico' %}"  height="40px;">
+    </div>
+        <div class="col-sm-9 mt-2">
+            <p style="color:white;font-weight:bold;text-align:center;">For More &emsp; Contact US-(+91)-7533904932  &emsp; And &emsp; Mail Me-riteshh101@gmail.com</p>
+        </div>
+</div>
+</div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="min-height:70px;">
+  <a class="navbar-brand" href="#">RSM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}">About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+      </li>
+
+
+
+         <form class="form-inline mx-4 my-lg-0" method="post" action="/search">
+             {% csrf_token %}
+      <input class="form-control mr-sm-2" name="category"  type="search" placeholder="Search here by Product Category Name" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </ul>
+
+
+      <ul class="navbar-nav mr-4">
+{% if request.user.is_authenticated %}
+          <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+
+<li class="nav-item">
+<a class="nav-link"> hello,{{user.username}}</a>
+</li>
+          <li class="nav-item">
+        <a class="nav-link" href="{% url 'changepass' %}">Change Password</a>
+      </li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'cart_page' %}">Cart</a></li>
+
+{% else %}
+                <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+<li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+      </li>
+{% endif %}
+      </ul>
+  </div>
+</nav>
+
+
+{% block body %}
+
+
+{% endblock %}
+
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 a"><a href="#"><span style="color:grey;font-weight:bold;">Back to Top</span></a></div>
+            </div>
+        <div class="row" style="background-color:black";>
+
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-2 c"><a href="#" style="color:gray;"><span style="font-weight:bold;font-size:16px;color:white;">Get to Know us</span></a><br/>
+                    <br/><a href="#" style="color:gray;">About Us</a><br/><a href="#" style="color:gray;">Careers</a><br/><a href="#" style="color:gray;">Press Releases</a><br/>
+                    <a href="#" style="color:gray;">Fashion cares</a><br/><a href="#" style="color:gray;">Gift of Smile</a>
+                </div>
+                <div class="col-sm-2 c"><a href="#" style="color:gray;"><span style="font-weight:bold;font-size:16px;color:white;">Connect with us</span></a><br/>
+                    <br/><a href="https://www.facebook.com/" style="color:gray;">Facebook</a><br/><a href="https://twitter.com/" style="color:gray;">Twitter</a><br/>
+                    <a href="https://www.instagram.com/" style="color:gray;">Instagram</a>
+            </div>
+                <div class="col-sm-2 c"><a href="#" style="color:gray;"><span style="font-weight:bold;font-size:16px;color:white;">Make Money with us</span></a><br/>
+                    <br/><a href="#" style="color:gray;">Sell on RSM</a><br/><a href="#" style="color:gray;">Become an Affiliate</a><br/><a href="#" style="color:gray;">Fulfiment by RSM</a>
+                    <a href="#" style="color:gray;">Advertise Your Products</a><a href="#" style="color:gray;">RSM pay on merchants</a>
+            </div>
+
+                <div class="col-sm-2 c"><a href="#" style="color:gray;"><span style="font-weight:bold;font-size:16px;color:white;">Let Us Help You</span></a><br/>
+                    <br/><a href="#" style="color:gray;">Your Account</a><br/><a href="#" style="color:gray;">Returns center</a><br/><a href="#" style="color:gray;">100% Purchase Protection</a><br/>
+                    <a href="#" style="color:gray;">RSM App Download</a><br/><a href="#" style="color:gray;">RSM Asssistant</a><br/><a href="#" style="color:gray;">Help</a>
+            </div>
+            <div class="col-sm-2"></div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 d">
+
+
+                <span>
+                    <span class="fa fa-facebook-square" style="color:white;font-size:38px;"></span> &emsp;
+                    <span class="fa fa-whatsapp" style="color:white;font-size:38px;"></span> &emsp;
+                    <span class="fa fa-twitter-square" style="color:white;font-size:38px;"></span> &emsp;
+                    <span class="fa fa-instagram" style="color:white;font-size:38px;"></span> &emsp;
+                    <span class="fa fa-youtube-square" style="color:white;font-size:38px;"></span> &emsp;
+
+                    </span>
+                    <a href="#" style="color:white;padding-left:200px;">Condition of use & Sale</a> &nbsp;
+                    <a href="#" style="color:white;">Privacy notice</a> &nbsp;
+                    <a href="#" style="color:white;">Interest-based Ads</a>
+
+        </div>
+
+        </div>
+            </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

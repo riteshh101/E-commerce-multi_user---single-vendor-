@@ -1,0 +1,57 @@
+
+{% extends 'header.html' %}
+{% block title %}Contact{% endblock %}
+{% block css %}
+{% load static %}
+
+
+
+#outer
+{
+background-color:rgba(0,0,0,0.5);
+border-radius:40px;
+height:520px;
+border: 1px solid red;
+margin-top: 100px;
+margin-bottom: 100px;
+font-family:andalus;
+
+}
+
+{% endblock %}
+{% block body %}
+
+<div class="container-fluid" style="background-image:url('{% static "image/grass.jpg" %}');background-size:cover;background-repeat:no-repeat;background-attachment:fixed;" >
+    <div class="row">
+        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4" id="outer">
+            <form action="contact" method="POST">
+                {% csrf_token %}
+              <h2 style="color:#00ff00;text-shadow:2px 7px 6px black; "><b>Contact US</b></h2>
+                <b style=" font-size: 18px;color: #f0f0f0;">Name</b>
+                    <input type="text" placeholder="Enter your name" name="name" class="form-control"required="name"/>
+                <b style=" font-size: 18px;color: #f0f0f0;">Mobile No.</b>
+                    <input type="number" placeholder="Enter your Mobile Number" name="mobile" class="form-control"required="number"/>
+                <b style=" font-size: 18px; color: #f0f0f0;">Email Id</b>
+                    <input type="email" placeholder="Enter your email id" name="email" class="form-control"required="email"/><br/>
+                    <b style=" font-size: 18px; color: #f0f0f0;">Message</b>
+                    <textarea name="message" class="form-control" required="message" style=" height:100px;"></textarea>
+                <br>
+                    <input type="submit" value="submit" class="form-control" style="font-size: 20px; background:navy; color:white;"><br/>
+
+
+            </form>
+            {% for x in messages %}
+            <h5 style="color:white"> {{x}} </h5>
+            {% endfor %}
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top:100px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115408.23982812326!2d82.92106856136766!3d25.320746099824227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2db76febcf4d%3A0x68131710853ff0b5!2sVaranasi%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1577106299908!5m2!1sen!2sin" width="600" id="map" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}

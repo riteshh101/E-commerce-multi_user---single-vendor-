@@ -1,0 +1,48 @@
+{% extends 'header.html' %}
+{% block title %}Search {% endblock %}
+{% block css %}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit:contain;
+}
+{% endblock %}
+{% block body %}
+<div class="container" style="min-height:500px;">
+    {% for msg in messages %}
+   <center><h3 style="color:red;"> {{msg}}</h3></center>
+    {% endfor %}
+    <div class="row mt-4 mx-4 mb-4">
+
+        <div class="col-sm-12">
+            <div class="row">
+
+         {% for x in sr %}
+
+    <div class="card mx-4 mb-3" style="width: 15rem">
+
+
+            <img src="media/{{x.image}}" height="200px" width="15px" style="padding:30px" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{x.product_name}}</h5>
+            <p class="card-text">Rs.{{x.price}}</p>
+            {% if request.user.is_authenticated %}
+            <form action="cart/{{x.id}}/" method="post">
+                {% csrf_token %}
+                <center><input type="submit" class="btn btn-primary" value="Add Cart"></center>
+            </form>
+            {% else %}
+            <center><a href="{% url 'login' %}" class="btn btn-primary">Add Cart</a></center>
+                {% endif %}
+        </div>
+
+    </div>
+
+{% endfor %}
+            </div>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}

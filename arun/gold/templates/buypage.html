@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Address Page</title>
+    <style>
+    span{
+        color:blue;
+         }
+
+         .card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit:contain;
+}
+
+.responsive {
+  width: 100%;
+  height: 200px;
+}
+</style>
+  </head>
+  <body>
+
+
+      <div class="container mt-4 mb-4"  style="border:1px solid red;">
+
+          <div class="row">
+              <div class="container mt-5 mb-5">
+                  <h4 class="text-warning">Continue with Recent Address</h4><hr>
+                  <div class="row ml-3 mx-4">
+                  {% for x in ct %}
+                        <div class="card ml-4 mb-2" style="width: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title">Name:{{x.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Mobile No.:{{x.mobile}}</h6>
+      <h6>Address:</h6>
+    <p class="card-text">{{x.address1}}</p>
+
+    <a href="{% url 'order_detail' x.id %}" class="btn btn-primary">Continue</a>
+    <a href="{% url 'remove_address' x.id %}" class="btn btn-primary float-right">Remove</a>
+  </div>
+
+                      </div>
+
+                  {% endfor %}
+
+                      </div>
+                  <hr>
+              </div>
+          </div>
+          <div class="row">
+              <div class="container mt-5 mb-5">
+                    <h4 class="text-warning">Add New Address </h4><hr>
+                  <h5 class="text-success">{% for message in messages %}  {{message}} {% endfor %}</h5>
+                  <form action="{% url 'buypage' %}" method="post">
+                      {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" name="email" required placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Name</label>
+      <input type="text" class="form-control" id="inputPassword4" name="name" required placeholder="Name">
+    </div>
+  </div>
+                      <div class="form-row">
+  <div class="form-group col-md-6">
+      {% for message in messages %}
+      <small class="text-danger">{{message}}</small>
+      {% endfor %}
+    <label >Mobile</label>
+    <input type="number" class="form-control"  name="mobile" required placeholder="Enter Your Mobile number here...">
+  </div>
+                          <div class="form-group col-md-6">
+      <label for="inputState">State</label>
+      <input type="text" class="form-control" required name="state" id="inputState">
+    </div>
+                      </div>
+
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" required name="address1" placeholder="1234 Main St">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" required name="city" id="inputCity">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" required id="inputZip" name="zip">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Address</button>
+                      <a href="{% url 'cart_page' %}" class="btn btn-danger">Cancel</a>
+</form>
+
+
+              </div>
+
+          </div>
+
+  </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>

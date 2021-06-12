@@ -1,0 +1,53 @@
+{% extends 'header.html' %}
+
+{% block title %} Cart{% endblock %}
+{% load static %}
+{% block body %}
+<div class="container mt-2">
+  <h3 class="mb-4">Cart</h3>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+
+        <th scope="col">Product</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Final Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for x in pro %}
+    <tr>
+
+
+        <td><img src="/media/{{x.image}}" height="20px;"/></td>
+      <td>{{x.product_name}}</td>
+      <td><a href="/cart_plus/{{x.idd}}" class="btn btn-success">+</a> &emsp;{{x.count}} &emsp;<a href="/cart_minus/{{x.idd}}" class="btn btn-success">-</a></td>
+      <td>{{x.price}}0</td>
+      <td>{{x.final_price}}0</td>
+      <td>
+        <form action="cart_remove/{{x.id}}/" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Remove" class="btn btn-danger">
+          </form>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <td></td>
+    <td><h4>Total Amount</h4></td>
+    <td></td>
+    <td></td>
+
+
+    <td><h4>{{mn}}0</h4></td>
+    <td><a href="{% url 'buypage' %}" class="btn btn-primary">Buy</a></td>
+  </tr>
+  </tfoot>
+</table>
+      </div>
+{% endblock %}
